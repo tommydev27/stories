@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Editor - Tuan S18 Style</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Lobster&family=Bebas+Neue&family=Caveat&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Almendra:wght@700&display=swap');
+
+        body {
+            background-color: #1a1a1a;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        #download-wrapper {
+            background-color: white; 
+            padding: 10px;
+            display: block; 
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        #capture-area {
+            width: 330px;
+            /* Mengubah height tetap menjadi min-height agar bisa memanjang otomatis */
+            min-height: 330px;
+            background: radial-gradient(circle, #eee 10%, #bdbdbd 100%);
+            border-radius: 45px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+            border: 1px solid transparent; 
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .avatar-container {
+            width: 60px;
+            height: 60px;
+            cursor: pointer; /* Menandakan bisa diklik */
+        }
+
+.avatar-img {
+    width: 60px;
+    height: 60px;
+    aspect-ratio: 1 / 1; /* Memaksa perbandingan kotak */
+    object-fit: cover;   /* Memastikan gambar memenuhi area tanpa gepeng */
+    border-radius: 50%;
+    display: block;
+}
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .username {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 22px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .verified-badge {
+            width: 26px;
+            height: 26px;
+            margin-top:-8px;
+            filter: drop-shadow(2px 2px 2px rgba(131,131,131,0.5));
+        }
+
+        .handle {
+            font-size: 8px;
+            color: #333;
+            font-family: Monospace;
+            font-weight: 900;
+            margin: 0;
+        }
+        
+        .quote-container {
+            flex-grow: 1;
+            margin-top: 10px;
+            padding-bottom: 30px; /* Ruang untuk watermark */
+        }
+.quote-title {
+    font-family: 'Bebas Neue', sans-serif; /* Font tegas untuk judul */
+    font-size: 18px;
+    color: #333;
+    text-transform: uppercase; /* Otomatis Huruf Besar */
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    outline: none;
+    white-space: pre-wrap;
+}
+
+
+.quote-text {
+    font-family: 'Almendra', serif;
+    font-size: 28px;
+    line-height: 1.2;
+    color: #000;
+    border: none;
+    background: transparent;
+    width: 100%;
+    outline: none;
+    resize: none;
+    word-wrap: break-word;
+
+    /* Solusi Utama */
+    text-align: left !important;
+    white-space: pre-wrap;
+    display: inline-block; /* Memastikan kontainer membungkus teks dengan benar */
+}
+
+        .watermark {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 8px;
+            color: rgba(0, 0, 0, 0.4); 
+            font-family: Monospace;
+            font-weight: bold;
+            text-transform: lowercase;
+        }
+
+        .style-controls {
+            margin-top: 15px;
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        select, .file-input-label {
+            padding: 8px;
+            border-radius: 8px;
+            background: #333;
+            color: white;
+            border: 1px solid #444;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .controls {
+            margin-top: 10px;
+            display: flex;
+            gap: 5px;
+        }
+
+        button {
+
+            padding: 12px 45px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-reset { background: #444; color: white; }
+        .btn-save { background: #2563eb; color: white; }
+        button:hover { opacity: 0.8; transform: translateY(-2px); }
+        
+        #file-input { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="download-wrapper">
+        <div id="capture-area">
+            <div class="profile-section">
+                <!-- Klik foto untuk ganti -->
+                <label for="file-input" class="avatar-container">
+                    <img id="profile-pic" src="https://i.postimg.cc/XJ4ZRQqY/Screenshot-20260504-125634-jpg-(1).png" class="avatar-img" alt="avatar">
+                </label>
+                <input type="file" id="file-input" accept="image/*" onchange="loadPhoto(event)">
+                
+                <div class="user-info">
+                    <h2 class="username" contenteditable="true">Tommy<a style="margin-top:-10px; font-size:12px;">𝁇S27</a> <img src="https://img.icons8.com/color/80/verified-badge.png" class="verified-badge"></h2>
+                    <p class="handle" contenteditable="true">@stories_tom.com</p>
+                </div>
+            </div>
+
+<div class="quote-container">
+    <!-- Elemen Judul Baru -->
+    <div class="quote-title" contenteditable="true" id="title-input">JUDUL QUOTE</div>
+    
+    <!-- Elemen Isi (Tetap) -->
+    <div class="quote-text" contenteditable="true" id="quote-input">Jangan dengerin omongan orang yang gak ngasih kita makan.</div>
+    
+    <div class="watermark">tommy-app.com  🐞</div>
+</div>
+        </div>
+    </div>
+
+    <div class="style-controls">
+ <select id="font-select" onchange="changeFontStyle()">
+    <option value="'Almendra', serif">Gaya Almendra</option>
+    <option value="'UnifrakturMaguntia', cursive">Gaya Gothic</option>
+    <option value="'Arial', sans-serif">Gaya Clean (Arial)</option>
+    <option value="'Monospace'">Gaya Kode</option>
+    
+    <!-- Tambahan Pilihan -->
+    <option value="'Playfair Display', serif">Gaya Elegan</option>
+    <option value="'Lobster', cursive">Gaya Artistik</option>
+    <option value="'Bebas Neue', sans-serif">Gaya Tegas</option>
+    <option value="'Caveat', cursive">Gaya Tulis Tangan</option>
+    <option value="'Georgia', serif">Gaya Klasik</option>
+</select>
+
+        <select id="size-select" onchange="changeFontSize()">
+            <option value="24px">Kecil</option>
+            <option value="28px" selected>Normal</option>
+            <option value="34px">Besar</option>
+            <option value="40px">Extra Besar</option>
+        </select>
+        
+        <label for="file-input" class="file-input-label">Ganti Foto Profil</label>
+    </div>
+
+    <div class="controls">
+        <button class="btn-reset" onclick="resetPage()">Reset Teks</button>
+        <button class="btn-save" onclick="downloadImage()">Simpan Gambar</button>
+    </div>
+
+<script>
+// Fungsi Ganti Foto
+function loadPhoto(event) {
+    const reader = new FileReader();
+    reader.onload = function() {
+        const output = document.getElementById('profile-pic');
+        output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+function changeFontStyle() {
+    const font = document.getElementById('font-select').value;
+    document.getElementById('quote-input').style.fontFamily = font;
+}
+
+function changeFontSize() {
+    const size = document.getElementById('size-select').value;
+    document.getElementById('quote-input').style.fontSize = size;
+}
+
+function resetPage() {
+    // Reset Isi
+    const quote = document.getElementById('quote-input');
+    quote.innerText = "Jangan dengerin omongan orang yang gak ngasih kita makan.";
+    quote.style.fontFamily = "'Almendra', serif";
+    quote.style.fontSize = "28px";
+
+    // Reset Judul Baru
+    const title = document.getElementById('title-input');
+    title.innerText = "JUDUL QUOTE";
+    
+    // ... sisa kode reset lainnya ...
+}
+
+function downloadImage() {
+    const area = document.getElementById('download-wrapper');
+    const titleInput = document.getElementById('title-input');
+    const quoteInput = document.getElementById('quote-input');
+
+    document.fonts.ready.then(() => {
+        html2canvas(area, {
+            useCORS: true,
+            scale: 4,
+            backgroundColor: "#ffffff",
+            onclone: (clonedDoc) => {
+                const clonedTitle = clonedDoc.getElementById('title-input');
+                const clonedQuote = clonedDoc.getElementById('quote-input');
+                
+                // Pastikan spasi terjaga di kedua elemen saat disimpan
+                clonedTitle.innerText = titleInput.innerText;
+                clonedTitle.style.whiteSpace = "pre-wrap";
+                
+                clonedQuote.innerText = quoteInput.innerText;
+                clonedQuote.style.whiteSpace = "pre-wrap";
+            }
+        }).then(canvas => {
+            const link = document.createElement('a');
+            link.download = 'quote-tom-' + Date.now() + '.png';
+            link.href = canvas.toDataURL("image/png", 1.0);
+            link.click();
+        });
+    });
+}
+</script>
+</body>
+</html>
