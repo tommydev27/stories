@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quote Editor - Tuan S18 Style</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Lobster&family=Bebas+Neue&family=Caveat&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -22,19 +17,18 @@
 
         #download-wrapper {
             background-color: white; 
-            padding: 10px;
+            padding: 3vw;
             display: block; 
             width: fit-content;
             margin: 0 auto;
         }
 
         #capture-area {
-            width: 330px;
-            /* Mengubah height tetap menjadi min-height agar bisa memanjang otomatis */
-            min-height: 330px;
+            width: 90vw;
+            min-height: 90vw;
             background: radial-gradient(circle, #eee 10%, #bdbdbd 100%);
-            border-radius: 45px;
-            padding: 30px;
+            border-radius: 12vw;
+            padding: 10vw;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -46,24 +40,24 @@
         .profile-section {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 0.3vw;
+            margin-bottom: 3vw;
         }
 
         .avatar-container {
-            width: 60px;
-            height: 60px;
+            width: 17vw;
+            height: 16vw;
             cursor: pointer; /* Menandakan bisa diklik */
         }
 
-.avatar-img {
-    width: 60px;
-    height: 60px;
-    aspect-ratio: 1 / 1; /* Memaksa perbandingan kotak */
-    object-fit: cover;   /* Memastikan gambar memenuhi area tanpa gepeng */
-    border-radius: 50%;
-    display: block;
-}
+        .avatar-img {
+            width: 17vw;
+            height: 17vw;
+            aspect-ratio: 1 / 1; 
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
 
         .user-info {
             display: flex;
@@ -72,21 +66,22 @@
 
         .username {
             font-family: 'UnifrakturMaguntia', cursive;
-            font-size: 22px;
+            font-size: 7vw;
             margin: 0;
             display: flex;
             align-items: center;
         }
 
         .verified-badge {
-            width: 26px;
-            height: 26px;
-            margin-top:-8px;
+            width: 6vw;
+            height: 6vw;
+            margin-left:0.5vw;
+            margin-top:-3vw;
             filter: drop-shadow(2px 2px 2px rgba(131,131,131,0.5));
         }
 
         .handle {
-            font-size: 8px;
+            font-size: 1vw;
             color: #333;
             font-family: Monospace;
             font-weight: 900;
@@ -95,44 +90,29 @@
         
         .quote-container {
             flex-grow: 1;
-            margin-top: 10px;
-            padding-bottom: 30px; /* Ruang untuk watermark */
+            margin-top: 3vw;
+            padding-bottom: 2vw;
         }
-.quote-title {
-    font-family: 'Bebas Neue', sans-serif; /* Font tegas untuk judul */
-    font-size: 18px;
-    color: #333;
-    text-transform: uppercase; /* Otomatis Huruf Besar */
-    letter-spacing: 1px;
-    margin-bottom: 5px;
-    outline: none;
-    white-space: pre-wrap;
-}
 
-
-.quote-text {
-    font-family: 'Almendra', serif;
-    font-size: 28px;
-    line-height: 1.2;
-    color: #000;
-    border: none;
-    background: transparent;
-    width: 100%;
-    outline: none;
-    resize: none;
-    word-wrap: break-word;
-
-    /* Solusi Utama */
-    text-align: left !important;
-    white-space: pre-wrap;
-    display: inline-block; /* Memastikan kontainer membungkus teks dengan benar */
-}
+        .quote-text {
+            font-family: 'Almendra', serif;
+            font-size: 7vw;
+            line-height: 1.2;
+            color: #000;
+            border: none;
+            background: transparent;
+            width: 100%;
+            outline: none;
+            resize: none;
+            text-align: left;
+            word-wrap: break-word;
+        }
 
         .watermark {
             position: absolute;
-            bottom: 20px;
-            right: 30px;
-            font-size: 8px;
+            bottom: 8vw;
+            right: 8vw;
+            font-size: 2vw;
             color: rgba(0, 0, 0, 0.4); 
             font-family: Monospace;
             font-weight: bold;
@@ -140,44 +120,129 @@
         }
 
         .style-controls {
-            margin-top: 15px;
+            margin-top: 3vw;
             display: flex;
-            gap: 4px;
+            gap: 2vw;
             flex-wrap: wrap;
             justify-content: center;
+              -webkit-tap-highlight-color: transparent; 
         }
 
-        select, .file-input-label {
-            padding: 8px;
-            border-radius: 8px;
-            background: #333;
-            color: white;
-            border: 1px solid #444;
-            cursor: pointer;
-            font-size: 12px;
-        }
+          select, .file-input-label {
+              padding: 2vw;
+              border-radius: 2vw;
+              background: #333;
+              color: white;
+              border: 0.5vw solid #444;
+              cursor: pointer;
+              font-size: 2.8vw;
+              transition: transform 0.1s ease, opacity 0.1s ease;
+              -webkit-tap-highlight-color: transparent;
+              user-select: none;
+              outline: none;
+              
+              /* Tambahkan ini untuk menstabilkan ukuran di desktop */
+              min-width: fit-content;
+              appearance: none; 
+              -webkit-appearance: none;
+              background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+              background-repeat: no-repeat;
+              background-position: right 2vw center;
+              background-size: 4vw;
+              padding-right: 8vw;
+          }
+          
+          @media (min-width: 1024px) {
+              select, .file-input-label {
+                  font-size: 16px;
+                  padding: 10px 30px 10px 15px;
+                  border-radius: 8px;
+                  border-width: 2px;
+                  background-size: 12px;
+                  background-position: right 10px center;
+              }
+          }
+          
+          select:hover, .file-input-label:hover {
+              opacity: 0.8;
+          }
+          
+          select:active, .file-input-label:active {
+              transform: scale(1.1);
+          }
 
         .controls {
-            margin-top: 10px;
+            margin-top: 2vw;
             display: flex;
-            gap: 5px;
+            gap: 2vw;
         }
 
         button {
-
-            padding: 12px 45px;
-            border-radius: 10px;
+            padding: 3vw 11.8vw;
+            border-radius: 2vw;
             border: none;
             cursor: pointer;
+            font-size: 3.7vw;
             font-weight: bold;
             transition: 0.3s;
         }
 
         .btn-reset { background: #444; color: white; }
         .btn-save { background: #2563eb; color: white; }
-        button:hover { opacity: 0.8; transform: translateY(-2px); }
         
-        #file-input { display: none; }
+          button {
+              transition: transform 0.1s ease;
+              -webkit-tap-highlight-color: transparent; 
+              user-select: none;
+              outline: none;
+          }
+          
+          button:hover {
+              opacity: 0.8;
+          }
+          
+          button:active {
+              transform: scale(1.1); 
+          }
+          
+          #file-input { 
+              display: none; 
+          }
+          .quote-container {
+              flex-grow: 1;
+              margin-top: 4vw;
+              padding-bottom: 10vw; 
+                }
+                
+          .quote-title {
+              font-family: 'Bebas Neue', sans-serif; 
+              font-size: 5vw;
+              color: #333;
+              text-transform: uppercase; 
+              letter-spacing: 1px;
+              margin-bottom: 5px;
+              outline: none;
+              white-space: pre-wrap;
+          }
+          
+          
+          .quote-text {
+              font-family: 'Almendra', serif;
+              font-size: 28px;
+              line-height: 1.2;
+              color: #000;
+              border: none;
+              background: transparent;
+              width: 100%;
+              outline: none;
+              resize: none;
+              word-wrap: break-word;
+          
+              /* Solusi Utama */
+              text-align: left !important;
+              white-space: pre-wrap;
+              display: inline-block; /* Memastikan kontainer membungkus teks dengan benar */
+          }
     </style>
 </head>
 <body>
@@ -192,8 +257,8 @@
                 <input type="file" id="file-input" accept="image/*" onchange="loadPhoto(event)">
                 
                 <div class="user-info">
-                    <h2 class="username" contenteditable="true">Tommy<a style="margin-top:-10px; font-size:12px;">𝁇S27</a> <img src="https://img.icons8.com/color/80/verified-badge.png" class="verified-badge"></h2>
-                    <p class="handle" contenteditable="true">@stories_tom.com</p>
+                    <h2 class="username" contenteditable="true">Tommy<a style="margin-top:-3vw; font-size:3vw;">𝁇S27</a> <img src="https://img.icons8.com/color/80/verified-badge.png" class="verified-badge"></h2>
+                    <p class="handle" contenteditable="true" style="font-size:2.1vw;">@stories_tom.com</p>
                 </div>
             </div>
 
@@ -202,7 +267,7 @@
     <div class="quote-title" contenteditable="true" id="title-input">JUDUL QUOTE</div>
     
     <!-- Elemen Isi (Tetap) -->
-    <div class="quote-text" contenteditable="true" id="quote-input">Jangan dengerin omongan orang yang gak ngasih kita makan.</div>
+    <div class="quote-text" contenteditable="true" id="quote-input" style="font-size:7vw;">Jangan dengerin omongan orang yang gak ngasih kita makan.</div>
     
     <div class="watermark">tommy-app.com  🐞</div>
 </div>
@@ -225,10 +290,10 @@
 </select>
 
         <select id="size-select" onchange="changeFontSize()">
-            <option value="24px">Kecil</option>
-            <option value="28px" selected>Normal</option>
-            <option value="34px">Besar</option>
-            <option value="40px">Extra Besar</option>
+            <option value="5vw">Kecil</option>
+            <option value="7vw" selected>Normal</option>
+            <option value="8vw">Besar</option>
+            <option value="9vw">Extra Besar</option>
         </select>
         
         <label for="file-input" class="file-input-label">Ganti Foto Profil</label>
@@ -265,7 +330,7 @@ function resetPage() {
     const quote = document.getElementById('quote-input');
     quote.innerText = "Jangan dengerin omongan orang yang gak ngasih kita makan.";
     quote.style.fontFamily = "'Almendra', serif";
-    quote.style.fontSize = "28px";
+    quote.style.fontSize = "7vw";
 
     // Reset Judul Baru
     const title = document.getElementById('title-input');
@@ -304,5 +369,3 @@ function downloadImage() {
     });
 }
 </script>
-</body>
-</html>
