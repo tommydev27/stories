@@ -1,5 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Lobster&family=Bebas+Neue&family=Caveat&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Lobster&family=Bebas+Neue&family=Caveat&family=Shrikhand&family=Graduate&family=Sigmar&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Almendra:wght@700&display=swap');
@@ -274,20 +280,25 @@
         </div>
     </div>
 
-    <div class="style-controls">
- <select id="font-select" onchange="changeFontStyle()">
-    <option value="'Almendra', serif">Gaya Almendra</option>
-    <option value="'UnifrakturMaguntia', cursive">Gaya Gothic</option>
-    <option value="'Arial', sans-serif">Gaya Clean (Arial)</option>
-    <option value="'Monospace'">Gaya Kode</option>
-    
-    <!-- Tambahan Pilihan -->
-    <option value="'Playfair Display', serif">Gaya Elegan</option>
-    <option value="'Lobster', cursive">Gaya Artistik</option>
-    <option value="'Bebas Neue', sans-serif">Gaya Tegas</option>
-    <option value="'Caveat', cursive">Gaya Tulis Tangan</option>
-    <option value="'Georgia', serif">Gaya Klasik</option>
-</select>
+<div class="style-controls">
+    <select id="font-select" onchange="changeFontStyle()">
+        <option value="'Almendra', serif">Gaya Almendra</option>
+        <option value="'UnifrakturMaguntia', cursive">Gaya Gothic</option>
+        <option value="'Arial', sans-serif">Gaya Clean (Arial)</option>
+        <option value="'Monospace'">Gaya Kode</option>
+        
+        <!-- Tambahan dari Gambar -->
+        <option value="'Shrikhand', display">Gaya Shrikhand</option>
+        <option value="'Graduate', serif">Gaya Graduate</option>
+        <option value="'Sigmar', display">Gaya Sigmar</option>
+        
+        <!-- Tambahan Pilihan -->
+        <option value="'Playfair Display', serif">Gaya Elegan</option>
+        <option value="'Lobster', cursive">Gaya Artistik</option>
+        <option value="'Bebas Neue', sans-serif">Gaya Tegas</option>
+        <option value="'Caveat', cursive">Gaya Tulis Tangan</option>
+        <option value="'Georgia', serif">Gaya Klasik</option>
+    </select>
 
         <select id="size-select" onchange="changeFontSize()">
             <option value="5vw">Kecil</option>
@@ -369,3 +380,5 @@ function downloadImage() {
     });
 }
 </script>
+</body>
+</html>
